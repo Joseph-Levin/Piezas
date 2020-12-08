@@ -22,6 +22,13 @@
 **/
 Piezas::Piezas()
 {
+    board.resize(BOARD_ROWS);
+    for (int i=0; i < BOARD_ROWS; ++i) {
+        for (int j=0; j < BOARD_COLS; ++j) {
+            board[i].push_back(Blank);
+        }
+    }
+    turn = X;
 }
 
 /**
@@ -51,7 +58,10 @@ Piece Piezas::dropPiece(int column)
 **/
 Piece Piezas::pieceAt(int row, int column)
 {
-    return Blank;
+    if (row >= BOARD_ROWS || row < 0 || column >= BOARD_COLS || column < 0)
+        return Invalid;
+    else
+        return board[row][column];
 }
 
 /**
